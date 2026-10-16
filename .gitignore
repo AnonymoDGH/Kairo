@@ -20,8 +20,7 @@ native/target/
 target/
 
 # Modelos y secretos (se descargan en tiempo de ejecución)
-models/
-!/core/models/
+/models/
 *.onnx
 .env
 secrets.properties
