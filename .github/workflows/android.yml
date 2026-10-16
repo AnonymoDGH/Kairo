@@ -54,8 +54,7 @@ jobs:
 
       - name: Motor para arm64-v8a
         working-directory: native
-        env:
-          ANDROID_NDK_HOME: ${{ env.ANDROID_NDK_LATEST_HOME }}
+        # cargo-ndk usa ANDROID_NDK_ROOT, que el runner ya define.
         run: cargo ndk -t arm64-v8a build --release --locked
 
       - name: Keystore de depuración fijo
