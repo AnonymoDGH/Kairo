@@ -4,7 +4,17 @@ Asistente de voz para Android con el que hablas en tiempo real y que **te respon
 voz**, clonada en local con el motor de [VoiceLab](https://github.com/AnonymoDGH/voicelab).
 Interfaz limpia estilo Cursor con *liquid glass* y un orbe animado.
 
-> **Estado:** en planificación. El plan completo está en [KAIRO_PLAN.md](KAIRO_PLAN.md).
+> **Estado:** Fase 0 (esqueleto y CI). El plan completo está en [KAIRO_PLAN.md](KAIRO_PLAN.md);
+> las pruebas en el móvil, en [docs/PRUEBAS.md](docs/PRUEBAS.md).
+
+## Compilar
+
+```sh
+./gradlew test assembleDebug          # APK en app/build/outputs/apk/debug/
+(cd native && cargo test)             # motor Rust en el host
+```
+
+Requisitos: JDK 21, Android SDK (API 37). CI (GitHub Actions) sube el APK como artefacto en cada PR.
 
 ## Resumen
 
