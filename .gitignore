@@ -1,0 +1,30 @@
+# Android / Gradle
+.gradle/
+build/
+local.properties
+captures/
+.externalNativeBuild/
+.cxx/
+*.apk
+*.aab
+*.keystore
+*.jks
+
+# IDE
+.idea/
+*.iml
+.vscode/
+
+# Rust
+native/target/
+target/
+
+# Modelos y secretos (se descargan en tiempo de ejecución)
+models/
+*.onnx
+.env
+secrets.properties
+
+# Sistema
+.DS_Store
+Thumbs.db
