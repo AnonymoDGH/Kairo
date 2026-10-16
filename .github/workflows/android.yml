@@ -28,7 +28,10 @@ jobs:
           distribution: temurin
           java-version: 21
 
-      - uses: android-actions/setup-android@v3
+      # El runner ya trae el Android SDK; solo aceptamos licencias (setup-android@v3 falla
+      # intentando instalar el paquete obsoleto "tools").
+      - name: Android SDK
+        run: yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null
 
       - uses: gradle/actions/setup-gradle@v5
 
