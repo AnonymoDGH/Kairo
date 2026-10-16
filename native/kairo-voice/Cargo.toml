@@ -1,9 +1,18 @@
 [package]
 name = "kairo-voice"
-version = "0.0.1"
-edition = "2021"
+version = "0.1.0"
+edition = "2024"
 license = "Apache-2.0"
-description = "Motor de voz de Kairo (VoiceLab) para Android. Fase 1 añade UniFFI y el motor."
+description = "Motor de voz de Kairo: VoiceLab (MeanVC2) expuesto a Kotlin con UniFFI."
 
 [lib]
 crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+# Rama con las features de Android (PR AnonymoDGH/voicelab#5); ver docs/DECISIONES.md.
+voicelab-core = { git = "https://github.com/AnonymoDGH/voicelab", rev = "7c944754f7d447824dfd9b9c4186adfe45dcd53a", default-features = false, features = ["load-dynamic"] }
+ort = { version = "=2.0.0-rc.13", default-features = false, features = ["std", "load-dynamic"] }
+anyhow = "1"
+safetensors = "0.8"
+thiserror = "2"
+uniffi.workspace = true
