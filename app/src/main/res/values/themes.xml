@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Ventana translúcida: se ve (desenfocada) la pantalla que haya detrás, sea el launcher u
+         otra app si Kairo se invoca como asistente. MainActivity ajusta el desenfoque en vivo. -->
     <style name="Theme.Kairo" parent="android:Theme.Material.NoActionBar">
-        <item name="android:windowBackground">@color/kairo_background</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowBlurBehindEnabled">true</item>
+        <item name="android:windowBlurBehindRadius">@dimen/kairo_blur_behind</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.2</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
-        <item name="android:windowSplashScreenBackground">@color/kairo_background</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
     </style>
 </resources>

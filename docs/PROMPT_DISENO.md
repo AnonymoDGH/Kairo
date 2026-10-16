@@ -1,56 +1,47 @@
-# Prompt para generar diseños de Kairo con una IA
+# Prompt para generar el diseño de Kairo con IA
 
-Pensado para Google Stitch, v0, Figma Make, Galileo o un generador de imágenes (GPT-image,
-Midjourney). Pégalo tal cual. Si la herramienta solo genera una pantalla por vez, pide primero
-"Inicio" y luego el resto con "mismo estilo, ahora la pantalla X".
+Referencia elegida por el dueño: **Apple iOS 26 / visionOS (Liquid Glass)**; simple, comercial,
+sin colores estridentes. Pégalo en ChatGPT (imagen), Gemini o Google Stitch.
 
----
+```
+Design the home screen of "Kairo", an Android voice assistant, in the exact visual language of
+Apple iOS 26 "Liquid Glass" and visionOS. It must look like a real, shipping Apple-quality app:
+simple, calm, commercial, lots of empty space. Nothing artistic or experimental.
 
-Diseña la interfaz móvil (Android, 393×873 dp, pantalla AMOLED) de **Kairo**, un asistente de voz
-con el que hablas en tiempo real y que te responde con tu propia voz clonada. Todo el texto de la
-interfaz en **español**.
+STYLE
+- Real Apple Liquid Glass: clear, thick, refractive glass panels with bright specular edges;
+  the background shows through slightly blurred and bent at the edges. Glass is neutral/clear,
+  never tinted purple or blue.
+- Background: a soft, natural, out-of-focus photographic wallpaper (warm sunset sky or calm
+  sea), muted and elegant. No neon, no purple/cyan gradients, no aurora blobs, no stars.
+- Colors: neutral glass + white/near-black text. One accent only: Apple system blue (#0A84FF),
+  used just for the active state.
+- Typography: SF Pro style, large clean title, plenty of whitespace. SF Symbols style icons.
+- Very few elements on screen.
 
-**Estilo:** oscuro, limpio y con mucho aire, como el editor Cursor, mezclado con el *liquid glass*
-de Apple: paneles de cristal translúcido con desenfoque fuerte del fondo, bordes finos que brillan
-(degradado blanco 28 % → 4 % de arriba-izquierda a abajo-derecha), un reflejo especular en el borde
-superior y una ligera refracción en las esquinas. Nada de decoración gratuita, ni sombras duras,
-ni burbujas de chat de colores.
+CONTENT
+- Center: a single liquid-glass sphere (clear glass ball, not glowing) that gently ripples
+  when the user speaks. Under it, small text "Escuchando…".
+- One line of transcript in the lower third: "¿Me recuerdas llamar a Marta a las 6?"
+- Bottom: a floating liquid-glass pill bar with 3 buttons: keyboard, a big microphone in the
+  middle, and settings.
+- All text in Spanish.
 
-**Paleta:** fondo `#07070B`. Sobre él, una *aurora* de manchas grandes y difusas en violeta
-`#7C5CFF`, cian `#22D3EE` y magenta `#F472B6` al 35–45 %. Texto principal `#F5F5F7`, secundario
-`#A1A1AA`. Acentos: cian cuando escucha, violeta cuando piensa y ámbar `#F59E0B` para errores.
-**Tipografía:** Geist, y Geist Mono para código y datos técnicos. **Radios:** tarjetas 24 dp,
-dock 28 dp y chips con forma de píldora.
+OUTPUT: 3 separate flat screenshots 1080×2400, front-facing, edge to edge, no phone frame, no
+perspective, no hands: (1) dark mode with sunset wallpaper, (2) light mode with sea wallpaper,
+(3) dark mode with plain dark gray wallpaper. Same layout in all three.
+```
 
-**El protagonista es un orbe**: una esfera de cristal de unos 55 % del ancho, con fresnel en el
-borde, un fluido de color que se mueve dentro y cáusticas suaves. Muéstralo en sus estados:
-reposo (colores fríos tenues), escuchando (cian, ondas concéntricas suaves), pensando (violeta,
-remolino interno) y hablando (late con la voz).
+Cuando elijas una, pide el resto de pantallas:
 
-**Pantallas:**
-1. **Inicio:** aurora de fondo y orbe centrado. Debajo, 1–2 líneas de transcripción en vivo: lo
-   que dice el usuario en gris y lo que responde Kairo en blanco. Abajo, un **dock de cristal**
-   con un botón de micrófono grande, un botón de teclado, un chip con el modelo de IA
-   (p. ej. "Claude Haiku") y un chip con la voz activa (avatar pequeño + "Mi voz").
-2. **Conversación:** hoja de cristal con el historial al estilo Cursor, en bloques limpios y sin
-   burbujas. Los mensajes del usuario llevan un borde izquierdo de color de acento. Incluye un
-   bloque de código en Geist Mono con botón "Copiar" y un campo de texto abajo.
-3. **Paleta de comandos:** buscador de cristal con atajos: "Nueva conversación", "Cambiar voz",
-   "Cambiar modelo", "Silenciar mi voz (voz Kairo)" y "Diagnóstico".
-4. **Voces:** cuadrícula de tarjetas de cristal con retratos ilustrados y nombre, una tarjeta
-   "Voz de Kairo" y botones "Importar .vlvoice" y "Clonar mi voz".
-5. **Ajustes:** lista agrupada en cristal (Cerebro, Voz, Audio, Modelos, Diagnóstico, Acerca de)
-   con interruptores y deslizadores minimalistas.
-6. **Bienvenida:** 3 pasos en cristal: conectar OpenRouter → descargar modelos (con tamaños en MB)
-   → permisos de micrófono y notificaciones, con indicador de progreso.
-
-**Entrega 4 direcciones visuales distintas** de la pantalla de Inicio, con el mismo contenido y
-estas variaciones:
-- **A. Fiel:** exactamente lo descrito arriba.
-- **B. Minimal:** casi monocromo, la aurora apenas visible y el orbe como único color.
-- **C. Vibrante:** aurora intensa, más refracción y cristal más grueso, con brillos iridiscentes.
-- **D. Terminal:** más cercana a Cursor, con más Geist Mono, líneas finas, rejilla sutil y chips
-  tipo etiqueta.
-
-Pon el nombre de cada dirección encima de su pantalla. Después, para la dirección que elija,
-genera las otras 5 pantallas con el mismo estilo.
+```
+Same exact style, same glass, same colors and type as image N. Now design, each as a separate
+flat 1080×2400 screenshot, Spanish text, very minimal:
+1) "Conversación" — message list, Apple Messages-like but in glass, text input at the bottom.
+2) "Voces" — grid of voices (Álvaro, Clara, Diego, Elena, "Voz de Kairo") with "Probar".
+3) "Ajustes" — iOS Settings-style grouped glass list: Cerebro, Voz, Audio, Modelos,
+   Diagnóstico, Acerca de.
+4) "Diagnóstico" — glass list with model downloads (name, "177 MB", progress bar, "Descargar")
+   and test results ("VoiceLab — RTF 0,48", "Piper — RTF 0,21", "Whisper — 620 ms").
+5) "Bienvenida" — 3 steps: "Conecta OpenRouter", "Descarga los modelos", "Permisos".
+```

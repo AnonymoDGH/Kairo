@@ -12,6 +12,12 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        ivy("https://github.com/k2-fsa/sherpa-onnx/releases/download") {
+            name = "sherpa-onnx"
+            patternLayout { artifact("v[revision]/[artifact]-[revision].[ext]") }
+            metadataSources { artifact() }
+            content { includeModule("com.k2fsa.sherpa.onnx", "sherpa-onnx") }
+        }
     }
 }
 

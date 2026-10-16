@@ -4,6 +4,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Typography
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
@@ -32,11 +33,10 @@ private val KairoTypography = Typography(
 )
 
 private val KairoDarkScheme = darkColorScheme(
-    primary = KairoColors.Cyan,
-    secondary = KairoColors.Violet,
-    tertiary = KairoColors.Magenta,
-    background = KairoColors.Background,
-    surface = KairoColors.Background,
+    primary = KairoColors.Accent,
+    onPrimary = KairoColors.OnAccent,
+    background = Color.Transparent,
+    surface = Color.Transparent,
     onBackground = KairoColors.TextPrimary,
     onSurface = KairoColors.TextPrimary,
     onSurfaceVariant = KairoColors.TextSecondary,

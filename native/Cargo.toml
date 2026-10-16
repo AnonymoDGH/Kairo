@@ -1,6 +1,9 @@
 [workspace]
-resolver = "2"
-members = ["kairo-voice"]
+resolver = "3"
+members = ["kairo-voice", "uniffi-bindgen"]
+
+[workspace.dependencies]
+uniffi = "0.32"
 
 [profile.release]
 lto = "thin"

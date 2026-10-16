@@ -33,6 +33,11 @@ jobs:
       - name: Android SDK
         run: yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null
 
+      - name: NDK
+        run: |
+          ndk=$(grep -oP '^ndk = "\K[^"]+' gradle/libs.versions.toml)
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --install "ndk;$ndk" > /dev/null
+
       - uses: gradle/actions/setup-gradle@v5
 
       - name: Rust + target Android
@@ -48,14 +53,15 @@ jobs:
       - name: cargo-ndk
         run: command -v cargo-ndk || cargo install cargo-ndk --locked
 
-      - name: Tests del motor (host)
+      - name: Lint y tests del motor (host)
         working-directory: native
-        run: cargo test --locked
+        run: |
+          rustup component add clippy rustfmt
+          cargo fmt --check
+          cargo clippy --locked --all-targets -- -D warnings
+          cargo test --locked
 
-      - name: Motor para arm64-v8a
-        working-directory: native
-        # cargo-ndk usa ANDROID_NDK_ROOT, que el runner ya define.
-        run: cargo ndk -t arm64-v8a build --release --locked
+      # Gradle compila el motor para arm64-v8a con cargo-ndk (tarea :core:voice:cargoNdkBuild).
 
       - name: Keystore de depuración fijo
         if: env.KEYSTORE_B64 != ''
