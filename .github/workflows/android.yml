@@ -34,7 +34,9 @@ jobs:
         run: yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null
 
       - name: NDK
-        run: sdkmanager --install "ndk;$(grep -oP '^ndk = "\K[^"]+' gradle/libs.versions.toml)"
+        run: |
+          ndk=$(grep -oP '^ndk = "\K[^"]+' gradle/libs.versions.toml)
+          "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --install "ndk;$ndk" > /dev/null
 
       - uses: gradle/actions/setup-gradle@v5
 
