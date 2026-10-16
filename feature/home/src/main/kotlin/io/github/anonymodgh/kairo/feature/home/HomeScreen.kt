@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -20,7 +21,7 @@ import io.github.anonymodgh.kairo.core.ui.GlassSurface
 import io.github.anonymodgh.kairo.core.ui.KairoColors
 
 @Composable
-fun HomeScreen(versionName: String, modifier: Modifier = Modifier) {
+fun HomeScreen(versionName: String, onOpenDiagnostics: () -> Unit, modifier: Modifier = Modifier) {
     val refraction = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU
     GlassBackdrop(
         background = { AuroraBackground(it) },
@@ -50,6 +51,9 @@ fun HomeScreen(versionName: String, modifier: Modifier = Modifier) {
                         color = KairoColors.TextSecondary,
                         modifier = Modifier.padding(top = 8.dp),
                     )
+                    TextButton(onClick = onOpenDiagnostics, modifier = Modifier.padding(top = 4.dp)) {
+                        Text("Abrir diagnóstico →", color = KairoColors.Cyan, style = MaterialTheme.typography.labelLarge)
+                    }
                 }
             }
         }

@@ -10,8 +10,8 @@ android {
 
     defaultConfig {
         applicationId = "io.github.anonymodgh.kairo"
-        versionCode = 1
-        versionName = "0.0.1-fase0"
+        versionCode = 2
+        versionName = "0.1.0-fase1"
     }
 
     signingConfigs {
@@ -41,6 +41,7 @@ android {
 dependencies {
     implementation(project(":core:ui"))
     implementation(project(":feature:home"))
+    implementation(project(":feature:diagnostics"))
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.activity.compose)
 
