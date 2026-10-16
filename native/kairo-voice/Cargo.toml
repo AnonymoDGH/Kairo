@@ -1,0 +1,9 @@
+[package]
+name = "kairo-voice"
+version = "0.0.1"
+edition = "2021"
+license = "Apache-2.0"
+description = "Motor de voz de Kairo (VoiceLab) para Android. Fase 1 añade UniFFI y el motor."
+
+[lib]
+crate-type = ["cdylib", "rlib"]
