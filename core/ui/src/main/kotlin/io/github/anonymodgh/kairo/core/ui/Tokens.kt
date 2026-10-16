@@ -19,6 +19,7 @@ object KairoColors {
     val Thinking = Violet
 
     val GlassFill = Color.White.copy(alpha = 0.08f)
+    val GlassFillFlat = Color.White.copy(alpha = 0.06f)
     val GlassBorderStart = Color.White.copy(alpha = 0.28f)
     val GlassBorderEnd = Color.White.copy(alpha = 0.04f)
     val GlassSpecular = Color.White.copy(alpha = 0.12f)

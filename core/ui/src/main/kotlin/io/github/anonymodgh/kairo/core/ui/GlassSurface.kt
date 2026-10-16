@@ -1,5 +1,6 @@
 package io.github.anonymodgh.kairo.core.ui
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
@@ -48,6 +49,8 @@ fun GlassBackdrop(
 /**
  * Tarjeta de cristal líquido: desenfoque del fondo, relleno blanco 8 %, borde degradado y brillo
  * especular. En API 33+ Haze añade refracción con un shader AGSL; en 31–32 cae a solo desenfoque.
+ * Con [blur] = false es un cristal "plano" (sin desenfoque) para listas: el presupuesto de GPU es
+ * de 2 superficies desenfocadas visibles a la vez.
  */
 @OptIn(ExperimentalHazeApi::class)
 @Composable
@@ -56,6 +59,7 @@ fun GlassSurface(
     shape: RoundedCornerShape = KairoShapes.Card,
     blurRadius: Dp = 28.dp,
     refraction: Boolean = true,
+    blur: Boolean = true,
     contentPadding: PaddingValues = PaddingValues(20.dp),
     content: @Composable BoxScope.() -> Unit,
 ) {
@@ -78,7 +82,10 @@ fun GlassSurface(
             chromaMultiplier(1.1f)
         }
     }
-    val glass = if (source != null) Modifier.hazeGlass(HazeInput.Sources(source), style) else Modifier
+    val glass = when {
+        blur && source != null -> Modifier.hazeGlass(HazeInput.Sources(source), style)
+        else -> Modifier.background(KairoColors.GlassFillFlat)
+    }
     Box(
         modifier
             .clip(shape)
