@@ -1,68 +1,78 @@
-# Prompt para generar las pantallas de Kairo
+# Prompt para generar el diseño de Kairo con IA
 
-Pensado para generadores de imagen (ChatGPT/GPT-image, Gemini, Midjourney) o de UI (Google Stitch,
-v0, Figma Make). Va en inglés porque estos modelos lo siguen mejor; el texto de la interfaz va en
-español. Pega el bloque entero. Si solo genera una imagen por vez, pide primero la pantalla 1 y
-luego: *"Same exact style, now screen N"*.
-
-Cuando tengas la que te guste, pásame la imagen: copio colores, radios, tipografía y espaciado.
-
----
+Pégalo entero en ChatGPT (imagen), Gemini, Midjourney o Google Stitch. Genera 4 direcciones
+de arte muy distintas para la pantalla de Inicio. Elige una, pide el resto de pantallas en ese
+estilo y pásame las imágenes: copio el estilo exacto.
 
 ```
-Design a high-fidelity mobile app UI for "Kairo", a real-time voice assistant for Android that
-answers with the user's own cloned voice. Render FLAT, front-facing screenshots at 1080×2400
-(phone portrait), no device frame, no perspective, no hands, no 3D mockup, no background scene —
-just the screen, edge to edge, so it can be reproduced pixel-accurately in code. All UI text
-must be in Spanish, sharp and legible.
+You are an award-winning product designer (think Teenage Engineering, Nothing, Rabbit r1,
+Linear, Arc, Braun). Design the home screen of "Kairo", an Android voice assistant you talk to in
+real time and that answers WITH YOUR OWN CLONED VOICE. The name comes from Greek "kairos": the
+right moment. The screen must feel like a crafted object, not an app template.
 
-VISUAL STYLE
-- Dark, minimal, premium. Mix of Cursor (code editor) cleanliness and Apple "liquid glass".
-- Background #07070B with a soft "aurora": large blurred blobs of violet #7C5CFF, cyan #22D3EE
-  and magenta #F472B6 at ~40% opacity, very smooth gradients, no noise, no stars.
-- Glass panels: translucent white fill 6–10%, strong background blur, 1px border with a gradient
-  from white 28% (top-left) to white 4% (bottom-right), a thin specular highlight on the top
-  edge, subtle refraction at the corners. No drop shadows, no neon glow on text.
-- Typography: Geist (sans) for UI, Geist Mono for numbers, metrics and code. Large clean titles,
-  generous spacing, 16dp side margins, 8dp grid.
-- Text colors: primary #F5F5F7, secondary #A1A1AA. Accents: cyan #22D3EE (listening),
-  violet #7C5CFF (thinking), amber #F59E0B (errors/warnings), green only for "ok" checkmarks.
-- Corner radii: cards 24dp, bottom dock 28dp, chips and buttons fully rounded (pill).
-- Icons: thin line icons (1.5px stroke), monochrome.
+HARD RULES — avoid the generic AI look:
+- NO purple/blue/cyan gradients, NO neon glow, NO glowing blue orb, NO aurora blobs, NO
+  sparkles/stars, NO robot or brain icons, NO glassmorphism cards floating on a gradient.
+- NO stock chat bubbles, NO default Material/iOS components, NO generic line icons.
+- Max 3 colors + neutrals. Every color must have a job.
+- Typography must carry the design: confident sizes, tight tracking, real hierarchy.
 
-THE ORB (hero element)
-A glass sphere ~55% of screen width: fresnel rim light, slowly flowing colored liquid inside,
-soft caustics, subtle reflection. It changes with state: idle (cool dim colors), listening
-(cyan, soft concentric ripples), thinking (violet inner swirl), speaking (pulses with the voice).
+OUTPUT: 4 separate images, each a FLAT front-facing screenshot 1080×2400, edge to edge, no phone
+frame, no perspective, no hands, no mockup scene. All UI text in Spanish, crisp and legible.
+Same content in all 4; only the art direction changes. Label each image with its name.
 
-SCREENS (same style for all)
-1. Inicio — aurora background, orb centered in the upper half, below it two lines of live
-   transcript ("¿Qué tiempo hace mañana en Madrid?" in gray, "Mañana tendrás 24 grados y sol."
-   in white). Bottom floating glass dock: big round mic button in the center, keyboard button,
-   a chip "Claude Haiku" (model) and a chip with a small avatar + "Mi voz".
-2. Conversación — glass sheet with a Cursor-style message timeline: no chat bubbles, clean
-   blocks; user messages have a thin cyan left border; one code block in Geist Mono with a
-   "Copiar" button; text field at the bottom "Escribe a Kairo…".
-3. Paleta de comandos — glass search field "Buscar comando" over a dimmed screen, list with
-   shortcuts: "Nueva conversación", "Cambiar voz", "Cambiar modelo", "Silenciar mi voz (voz
-   Kairo)", "Diagnóstico".
-4. Voces — 2-column grid of glass cards with illustrated portrait, name (Álvaro, Clara, Diego,
-   Elena…) and a "Probar" button; a highlighted card "Voz de Kairo"; top buttons
-   "Importar .vlvoice" and "Clonar mi voz".
-5. Ajustes — grouped glass list: Cerebro, Voz, Audio, Modelos, Diagnóstico, Acerca de; minimal
-   toggles and sliders ("Sensibilidad de interrupción", "Manos libres").
-6. Diagnóstico — top bar with back arrow, title "Diagnóstico" and a "Copiar informe" text
-   button. Sections: "Modelos" (rows: name, size "177 MB", license in small gray text, progress
-   bar "84 / 177 MB", buttons "Descargar" / "Borrar"), "Dispositivo" (key-value list in Geist
-   Mono: "Redmi Note 14 4G", "Helio G99", "Android 14 · API 34", "AEC: sí"), and benchmark
-   cards ("VoiceLab (Calidad) · 1 hilo" → "RTF p99 0,48 ✓", "Piper" → "RTF 0,21 ✓",
-   "STT Whisper base" → "620 ms · WER 9 % ✓") each with a small "Ejecutar" pill button.
-7. Bienvenida — 3-step onboarding on glass: "Conecta OpenRouter" → "Descarga los modelos"
-   (with sizes) → "Permisos de micrófono y notificaciones", with a step indicator.
+CONTENT OF THE HOME SCREEN
+- The voice visual as the hero: a living shape that reacts to sound (state shown: "Escuchando").
+- Live transcript, 2 lines: what I said ("¿Me recuerdas llamar a Marta a las 6?") and what Kairo
+  answers ("Hecho. A las 18:00 te aviso.").
+- Small status line: "Mi voz · Claude Haiku · local".
+- Bottom controls: big talk button, keyboard button, and access to "Conversación" and "Ajustes".
 
-DELIVER 4 VISUAL DIRECTIONS of screen 1 (Inicio) side by side, same content, labeled on top:
-A. "Fiel" — exactly as described.
-B. "Minimal" — almost monochrome, faint aurora, the orb is the only color.
-C. "Vibrante" — intense aurora, thicker glass, iridescent highlights, more refraction.
-D. "Terminal" — closer to Cursor: more Geist Mono, hairline dividers, subtle grid, tag-like chips.
+THE 4 DIRECTIONS
+
+1. "OBSIDIANA" — volcanic black glass, warm and heavy.
+   Palette: #0E0C0B obsidian, #1A1715 raised surface, #E8E1D7 bone text, #C8743A copper accent,
+   #6B635B muted text. The voice visual is a ring of molten copper light, like a solar eclipse
+   corona, that ripples with the voice. Glass is dark and smoky (polished stone, not frosted
+   white). Type: a high-contrast editorial serif for the big words (e.g. "Instrument Serif") +
+   a refined mono for data. Feels like a luxury watch at night.
+
+2. "PAPEL" — light, tactile, editorial; the opposite of every AI app.
+   Palette: #F1ECE3 warm paper, #161412 ink, #E5482B vermilion accent, #8C857B pencil gray.
+   The voice visual is an ink waveform drawn like a brush stroke / seismograph line across the
+   page. Swiss grid, big Grotesk type ("Neue Haas"/"Inter Display" feel), thin hairline rules,
+   numbered sections, subtle paper grain. Feels like a printed magazine that listens.
+
+3. "FÓSFORO" — a precision instrument / oscilloscope.
+   Palette: #0A0B0A near black, #121412 panel, #FFB000 phosphor amber, #3A3F38 grid lines,
+   #D9D4C7 text. The voice visual is a Lissajous figure / oscilloscope trace drawn live in
+   amber, with a faint measurement grid and tick marks. Mono type everywhere ("JetBrains Mono"/
+   "Berkeley Mono" feel), labels in small caps like hardware silkscreen, physical-looking
+   buttons. Feels like Teenage Engineering made a voice assistant.
+
+4. "MAREA" — calm, organic, premium. Real liquid glass done right.
+   Palette: #0B1416 deep sea ink, #13211F surface, #CFE3DA sea-glass text, #7FD1B9 sea-glass
+   accent, #F2C14E single warm sun accent used once. The voice visual is a drop of liquid glass
+   (clear, refractive, with real caustic light on the background, NOT glowing) that deforms
+   with the voice like water surface tension. Soft rounded sans ("Satoshi"/"General Sans" feel).
+   Feels like sea glass on a beach at dusk.
+
+Make each one feel designed by a different studio. Prioritize originality, restraint and craft.
+```
+
+Cuando elijas una dirección, pide las demás pantallas con:
+
+```
+Same exact art direction "<NOMBRE>", same palette, type and components. Now design these
+screens, each as a separate flat 1080×2400 screenshot with Spanish text:
+1) "Conversación": message history (no chat bubbles), one code block with "Copiar", text input.
+2) "Voces": grid of voices (Álvaro, Clara, Diego, Elena, "Voz de Kairo"), buttons
+   "Importar .vlvoice" and "Clonar mi voz", each voice with "Probar".
+3) "Ajustes": sections Cerebro, Voz, Audio, Modelos, Diagnóstico, Acerca de; toggles/sliders
+   "Manos libres" and "Sensibilidad de interrupción".
+4) "Diagnóstico": back button, title, "Copiar informe"; section "Modelos" (name, "177 MB",
+   license, progress "84 / 177 MB", "Descargar"/"Borrar"); section "Dispositivo" (Redmi Note 14
+   4G · Helio G99 · Android 14 · AEC: sí); benchmark rows ("VoiceLab · 1 hilo — RTF p99 0,48",
+   "Piper — RTF 0,21", "Whisper base — 620 ms · WER 9 %") with "Ejecutar".
+5) "Bienvenida": 3 steps "Conecta OpenRouter" → "Descarga los modelos" → "Permisos".
 ```
