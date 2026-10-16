@@ -24,9 +24,9 @@ class HomeScreenSmokeTest {
     @get:Rule val compose = createComposeRule()
 
     private fun rendersHome() {
-        compose.setContent { KairoTheme { HomeScreen(versionName = "test", onOpenDiagnostics = {}) } }
+        compose.setContent { KairoTheme { HomeScreen(onOpenSettings = {}) } }
         compose.mainClock.advanceTimeBy(1_000)
-        compose.onNodeWithText("Kairo").assertExists()
+        compose.onNodeWithText("Toca el micro para hablar").assertExists()
     }
 
     @Test @Config(sdk = [31])

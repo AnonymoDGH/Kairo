@@ -5,6 +5,9 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.widget.Toast
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import io.github.anonymodgh.kairo.core.ui.KairoShapes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -48,9 +51,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import io.github.anonymodgh.kairo.core.models.InstallState
 import io.github.anonymodgh.kairo.core.models.ModelCatalog
 import io.github.anonymodgh.kairo.core.models.ModelPackage
-import io.github.anonymodgh.kairo.core.ui.AuroraBackground
-import io.github.anonymodgh.kairo.core.ui.GlassBackdrop
 import io.github.anonymodgh.kairo.core.ui.GlassSurface
+import io.github.anonymodgh.kairo.core.ui.KairoIcon
+import io.github.anonymodgh.kairo.core.ui.KairoIconView
 import io.github.anonymodgh.kairo.core.ui.KairoColors
 
 @Composable
@@ -67,7 +70,7 @@ fun DiagnosticsScreen(onBack: () -> Unit, modifier: Modifier = Modifier) {
         onDispose { view.keepScreenOn = false }
     }
 
-    GlassBackdrop(background = { AuroraBackground(it) }, modifier = modifier.fillMaxSize()) {
+    Box(modifier.fillMaxSize().background(KairoColors.Scrim)) {
         Column(Modifier.fillMaxSize().statusBarsPadding()) {
             TopBar(onBack, onCopy = { copyReport(context, vm.report()) })
             LazyColumn(
@@ -100,12 +103,13 @@ private fun copyReport(context: Context, text: String) {
 private fun TopBar(onBack: () -> Unit, onCopy: () -> Unit) {
     GlassSurface(
         Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp),
+        shape = KairoShapes.Pill,
         contentPadding = PaddingValues(horizontal = 8.dp, vertical = 4.dp),
     ) {
         Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-            TextButton(onBack, modifier = Modifier.semantics { contentDescription = "Atrás" }) { Text("←", color = KairoColors.TextPrimary, style = MaterialTheme.typography.titleMedium) }
+            TextButton(onBack, modifier = Modifier.semantics { contentDescription = "Atrás" }) { KairoIconView(KairoIcon.Back, size = 22.dp) }
             Text("Diagnóstico", Modifier.weight(1f), style = MaterialTheme.typography.titleMedium, color = KairoColors.TextPrimary, maxLines = 1, overflow = TextOverflow.Ellipsis)
-            TextButton(onCopy) { Text("Copiar informe", color = KairoColors.Cyan, maxLines = 1) }
+            TextButton(onCopy) { Text("Copiar informe", color = KairoColors.Accent, maxLines = 1) }
         }
     }
 }
@@ -120,7 +124,7 @@ private fun Header(title: String, note: String? = null) {
 
 @Composable
 private fun FlatCard(content: @Composable () -> Unit) {
-    GlassSurface(Modifier.fillMaxWidth(), blur = false, contentPadding = PaddingValues(16.dp)) {
+    GlassSurface(Modifier.fillMaxWidth(), contentPadding = PaddingValues(16.dp)) {
         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) { content() }
     }
 }
@@ -145,12 +149,12 @@ private fun ModelCard(pkg: ModelPackage, ui: DiagnosticsUiState, vm: Diagnostics
     Small(pkg.license)
     when (st) {
         is InstallState.Downloading -> {
-            LinearProgressIndicator({ if (st.total > 0) st.downloaded.toFloat() / st.total else 0f }, Modifier.fillMaxWidth(), color = KairoColors.Cyan)
+            LinearProgressIndicator({ if (st.total > 0) st.downloaded.toFloat() / st.total else 0f }, Modifier.fillMaxWidth(), color = KairoColors.Accent)
             Mono("${mb(st.downloaded)} / ${mb(st.total)}")
         }
         InstallState.Verifying -> Mono("Verificando…")
         InstallState.Extracting -> Mono("Descomprimiendo…")
-        InstallState.Installed -> Mono("Instalado", KairoColors.Cyan)
+        InstallState.Installed -> Mono("Instalado", KairoColors.Accent)
         is InstallState.Failed -> Text(st.message, style = MaterialTheme.typography.bodyMedium, color = KairoColors.Error)
         InstallState.NotInstalled -> if (pkg.id in ui.queued) Mono("En cola…")
     }
@@ -167,7 +171,7 @@ private fun ModelCard(pkg: ModelPackage, ui: DiagnosticsUiState, vm: Diagnostics
 private fun PrimaryButton(text: String, enabled: Boolean = true, onClick: () -> Unit) = Button(
     onClick,
     enabled = enabled,
-    colors = ButtonDefaults.buttonColors(containerColor = KairoColors.Cyan, contentColor = KairoColors.Background),
+    colors = ButtonDefaults.buttonColors(containerColor = KairoColors.Accent, contentColor = KairoColors.OnAccent),
 ) { Text(text) }
 
 @Composable
@@ -208,7 +212,7 @@ private fun LazyListScope.benchItems(ui: DiagnosticsUiState, vm: DiagnosticsView
         BenchCard(BenchId.Stt, "STT", "Cada modelo instalado, 10 frases. Criterio: 4 s en ≤ 700 ms y WER ≤ 15 %. Audio sintético (Piper): el WER real con tu voz será algo peor.", ui, vm, extraNeed = ui.installedStt().isEmpty()) {
             ui.results.stt.forEach { SttResultView(it) }
             sttWinner(ui.results.stt)?.let {
-                Mono("Ganador: ${it.result.name}" + if (it.meetsBoth) "" else " (no cumple ambos criterios)", KairoColors.Cyan)
+                Mono("Ganador: ${it.result.name}" + if (it.meetsBoth) "" else " (no cumple ambos criterios)", KairoColors.Accent)
             }
         }
     }
@@ -218,7 +222,7 @@ private fun LazyListScope.benchItems(ui: DiagnosticsUiState, vm: DiagnosticsView
                 Mono("STT ${fmt(it.sttMs, 0)} ms (${it.sttName})")
                 Mono("Piper ${fmt(it.piperMs, 0)} ms")
                 Mono("VoiceLab ${fmt(it.voiceLabMs, 0)} ms")
-                Mono("Total ${fmt(it.totalMs, 0)} ms", KairoColors.Cyan)
+                Mono("Total ${fmt(it.totalMs, 0)} ms", KairoColors.Accent)
             }
         }
     }
@@ -245,7 +249,7 @@ private fun SttResultView(s: SttResult) {
     var open by remember { mutableStateOf(false) }
     Mono("${if (s.meetsBoth) "✅ " else ""}${s.name}")
     Mono("media ${fmt(s.meanMs, 0)} ms · 4 s ${fmt(s.ms4s, 0)} ms · máx ${fmt(s.maxMs, 0)} ms · WER ${fmt(s.wer * 100, 1)} %", KairoColors.TextSecondary)
-    TextButton({ open = !open }) { Text(if (open) "Ocultar frases" else "Ver frases", color = KairoColors.Cyan) }
+    TextButton({ open = !open }) { Text(if (open) "Ocultar frases" else "Ver frases", color = KairoColors.Accent) }
     if (open) s.phrases.forEachIndexed { i, p ->
         Small("${i + 1}. ${p.reference}")
         Mono(p.hypothesis.ifBlank { "(vacío)" })
@@ -268,7 +272,7 @@ private fun BenchCard(
     Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
         PrimaryButton("Ejecutar", enabled = ui.running == null && missing.isEmpty()) { vm.run(id) }
         if (ui.running == id) {
-            CircularProgressIndicator(Modifier.size(20.dp), color = KairoColors.Cyan, strokeWidth = 2.dp)
+            CircularProgressIndicator(Modifier.size(20.dp), color = KairoColors.Accent, strokeWidth = 2.dp)
             Mono(ui.progress, KairoColors.TextSecondary)
         }
     }

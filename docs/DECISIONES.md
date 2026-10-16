@@ -69,3 +69,17 @@ Registro de lo que se aparta de `KAIRO_PLAN.md` o lo concreta, con el porqué.
 - **`.gitignore`: `/models/` anclado a la raíz.** El patrón `models/` también ignoraba el paquete
   `core/models/src/.../models/`. Los modelos siguen fuera del repo por `*.onnx` y porque se
   descargan a `filesDir`.
+
+## Diseño (cambio pedido por el dueño)
+
+- **Cristal líquido monocromo estilo iOS 26 en lugar de la aurora violeta/cian de §9.** El dueño
+  eligió una referencia (panel de cristal, esfera de cristal transparente, barra en píldora con
+  teclado · micro · ajustes). Un solo acento: azul `#0A84FF`. Se eliminan la aurora y Haze.
+- **Sin fondo propio: la ventana de Kairo es translúcida** y el sistema desenfoca lo que haya
+  detrás (`FLAG_BLUR_BEHIND`, API 31+), sea el launcher u otra app. Android no deja leer los
+  píxeles de otras apps, así que la refracción real de lo de detrás no es posible; el cristal y la
+  esfera se dibujan encima. Si el sistema desactiva el desenfoque (ahorro de batería, ajustes de
+  HyperOS), se usa un gris sólido `#3A3B3E`.
+- **Invocable fuera de la app:** Kairo se registra como *Asistente digital* (`VoiceInteractionService`
+  + `ACTION_ASSIST`). Android exige además un `RecognitionService`; el de Kairo no reconoce nada
+  para otras apps (su STT es propio). Adelanta parte del subsistema 2, sin herramientas aún.

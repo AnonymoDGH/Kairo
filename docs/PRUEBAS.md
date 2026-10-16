@@ -23,7 +23,7 @@ APK: pestaña **Actions** del PR → última ejecución de *Android* → artefac
 
 ## Fase 1 — Rendimiento en el dispositivo
 
-Instala el APK nuevo y en Inicio pulsa **"Abrir diagnóstico"**. Con **Wi-Fi** y el móvil enchufado
+Instala el APK nuevo y en Inicio pulsa el **engranaje** (abre Diagnóstico). Con **Wi-Fi** y el móvil enchufado
 o con batería > 50 %, **sin ahorro de batería**:
 
 1. En **Modelos**, descarga: *Voz VoiceLab (Calidad)*, *Voz base Piper*, *Silero VAD* y los STT
@@ -39,3 +39,12 @@ o con batería > 50 %, **sin ahorro de batería**:
 3. Pulsa **"Copiar informe"** y pégalo en el PR de la Fase 1.
 
 Si algo se cierra de golpe o sale un error en rojo, pégalo también (o una captura).
+
+### Diseño nuevo y asistente
+
+- [ ] Al abrir Kairo desde el launcher se ve tu pantalla de inicio **desenfocada** detrás del panel.
+- [ ] Ajustes del móvil → Apps → Apps predeterminadas → **Asistente digital** → elige **Kairo**.
+- [ ] Dentro de otra app (p. ej. Chrome), mantén pulsado el botón de encendido o desliza desde la
+      esquina inferior: Kairo aparece encima con esa app desenfocada detrás. (En HyperOS el gesto
+      puede estar en Ajustes → Ajustes adicionales → Atajos de gestos → Iniciar asistente.)
+- [ ] Si en vez de desenfoque ves gris liso, dime si tienes el ahorro de batería activado.
