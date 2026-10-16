@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Orbe: esfera con degradado violeta → cian y brillo superior. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <path android:pathData="M54,30a24,24 0,1 1,0 48a24,24 0,1 1,0 -48z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:type="radial"
+                android:centerX="46"
+                android:centerY="44"
+                android:gradientRadius="34">
+                <item android:offset="0" android:color="#FF22D3EE" />
+                <item android:offset="0.55" android:color="#FF7C5CFF" />
+                <item android:offset="1" android:color="#FFF472B6" />
+            </gradient>
+        </aapt:attr>
+    </path>
+    <path
+        android:fillColor="#33FFFFFF"
+        android:pathData="M40,42a14,7 0,1 1,28,0a14,7 0,1 1,-28,0z" />
+</vector>
